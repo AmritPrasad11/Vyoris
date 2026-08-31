@@ -1,0 +1,27 @@
+{
+  "name": "vyoris-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vyoris AI - AI-powered lead intelligence platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -p \"[{name}]\" -n \"WEB,API\" -c \"cyan,orange\" \"npm run dev:web\" \"npm run dev:api\"",
+    "dev:web": "npm run dev --workspace=@vyoris/web",
+    "dev:api": "npm run dev --workspace=@vyoris/api",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build --workspace=@vyoris/web",
+    "build:api": "npm run build --workspace=@vyoris/api",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
